@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Amount, Container, Footer, Header, Icon, LastTransaction, Title } from './styles';
-import { Feather } from '@expo/vector-icons';
 
 interface HighlightCardPros {
   title: string;

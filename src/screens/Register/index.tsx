@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Alert, Keyboard, Modal, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Alert, Keyboard, Modal, TouchableWithoutFeedback } from 'react-native';
 import { Button } from '../../components/Forms/Button';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
-import { Input } from '../../components/Forms/Input';
 import { InputForm } from '../../components/Forms/InputForm';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
 import { CategoryProps, CategorySelect } from '../CategorySelect';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { Container, Fields, Form, Header, Title, TransactionTypes } from './styles';
-import { GestureHandlerRootView, RectButton } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
-import { CommonActions, useNavigation, useRoute } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { TransactionCardProps } from '../../components/TransactionCard';
 interface FormData {
   name: string;
@@ -134,19 +132,6 @@ export const Register = () => {
               onPress={() => setModalOpen(true)}
             />
           </Fields>
-          {/* <GestureHandlerRootView>
-            <RectButton
-              onPress={() => {
-                console.log({ category })
-                setModalOpen(true)
-              }}
-            >
-              <Text>
-              Enviar
-              </Text>
-            </RectButton>
-          </GestureHandlerRootView> */}
-
           <Button
             title='Enviar'
             onPress={handleSubmit(handleRegister)}

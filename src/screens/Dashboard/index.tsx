@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, View, ActivityIndicator } from 'react-native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { HighlightCard } from '../../components/HighlightCard';
 import { TransactionCardProps, TransactionCard } from '../../components/TransactionCard';
 import {
@@ -78,7 +77,6 @@ export function Dashboard() {
         .filter(f => f.type === 'negative')
         .map(m => new Date(m.date).getTime())));
 
-      console.log({ lastTransactionsEntries, lastTransactionsExpensive })
       setHighlight({
         entries: {
           amount: formattedCurrency(entriesTotal),

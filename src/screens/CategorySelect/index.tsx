@@ -1,9 +1,7 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/Forms/Button';
 import { categories } from '../../utils/categories';
-import { Feather } from '@expo/vector-icons';
-import { gestureHandlerRootHOC, GestureHandlerRootView, RectButton } from "react-native-gesture-handler"
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 import {
   Category, CategoryList, Container, Footer, Header, Icon, Name,
@@ -52,19 +50,6 @@ export const CategorySelect = ({
         ItemSeparatorComponent={() => <Separator />}
       />
       <Footer>
-        {/* <GestureHandlerRootView>
-          <RectButton
-            onPress={() => {
-              closeSelectCategory()
-              console.log({ category })
-            }}
-          >
-            <Text>
-              Selecionar
-            </Text>
-          </RectButton>
-        </GestureHandlerRootView> */}
-
         <Button
           title='Selecionar'
           onPress={() => closeSelectCategory()}

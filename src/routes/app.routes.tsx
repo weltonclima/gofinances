@@ -5,8 +5,7 @@ import { useTheme } from 'styled-components';
 import { Dashboard } from '../screens/Dashboard';
 import { Register } from '../screens/Register';
 import { MaterialIcons } from '@expo/vector-icons';
-
-// import { Container } from './styles';
+import { Remuse } from '../screens/Remuse';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -53,7 +52,7 @@ export const AppRoutes = () => {
       />
       <Screen
         name='Resumo'
-        component={Register}
+        component={Remuse}
         options={{
           tabBarIcon: (({ size, color }) =>
             <MaterialIcons
