@@ -6,20 +6,6 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
-export const Header = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-  height: ${RFValue(113)}px;
-  justify-content: flex-end;
-  align-items: center;
-`;
-
-export const Title = styled.Text`
-  color: ${({ theme }) => theme.colors.shape};
-  font-size:${RFValue(18)}px;
-  font-family: ${({ theme }) => theme.fonts.regular};
-  margin-bottom: 19px;
-`;
-
 export const Form = styled.View`
   flex:1;
   width:100%;

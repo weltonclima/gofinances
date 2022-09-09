@@ -8,11 +8,12 @@ import { TransactionTypeButton } from '../../components/Forms/TransactionTypeBut
 import { CategoryProps, CategorySelect } from '../CategorySelect';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { Container, Fields, Form, Header, Title, TransactionTypes } from './styles';
+import { Container, Fields, Form, TransactionTypes } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { TransactionCardProps } from '../../components/TransactionCard';
+import { Header } from '../../components/Header';
 interface FormData {
   name: string;
   amount: string;
@@ -95,9 +96,7 @@ export const Register = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
-        <Header>
-          <Title>Cadastro</Title>
-        </Header>
+        <Header title='Cadastro' />
         <Form>
           <Fields>
             <InputForm
