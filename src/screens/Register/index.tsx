@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Alert, Keyboard, Modal, TouchableWithoutFeedback } from 'react-native';
+import { Alert, Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native';
 import { Button } from '../../components/Forms/Button';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { InputForm } from '../../components/Forms/InputForm';
@@ -8,7 +8,7 @@ import { TransactionTypeButton } from '../../components/Forms/TransactionTypeBut
 import { CategoryProps, CategorySelect } from '../CategorySelect';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { Container, Fields, Form, TransactionTypes } from './styles';
+import { Container, Form, TransactionTypes } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { CommonActions, useNavigation } from '@react-navigation/native';
@@ -52,13 +52,13 @@ export const Register = () => {
     if (category.key === 'category')
       return Alert.alert('Selecione o tipo da transação');
 
-    const newTransaction: TransactionCardProps = {
+    const newTransaction = {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
       type: transactionType,
-      category: category,
-      date: new Date().toLocaleDateString('pt-BR'),
+      category: category.key,
+      date: new Date(),
     }
 
     try {
@@ -98,7 +98,7 @@ export const Register = () => {
       <Container>
         <Header title='Cadastro' />
         <Form>
-          <Fields>
+          <View>
             <InputForm
               placeholder='Nome'
               name="name"
@@ -130,7 +130,7 @@ export const Register = () => {
               title={category.name}
               onPress={() => setModalOpen(true)}
             />
-          </Fields>
+          </View>
           <Button
             title='Enviar'
             onPress={handleSubmit(handleRegister)}

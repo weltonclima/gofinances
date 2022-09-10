@@ -30,13 +30,24 @@ export function Dashboard() {
   const theme = useTheme();
 
   function formattedCurrency(number: number) {
-    return Intl.NumberFormat('pt-BR', {
+    return new Intl.NumberFormat('pt-BR', {
       style: 'currency', currency: 'BRL'
     }).format(number)
   }
 
-  function formattedDate(date: number | Date, options?: Intl.DateTimeFormatOptions) {
-    return Intl.DateTimeFormat('pt-BR', options).format(date)
+  function formattedDate(
+    collection: TransactionCardProps[],
+    type: "positive" | "negative",
+    options?: Intl.DateTimeFormatOptions
+  ) {
+    const lastTransactions = collection.filter(f => f.type === type)
+
+    if (!lastTransactions.length) return
+
+    return new Intl.DateTimeFormat('pt-BR', options).format(
+      new Date(
+        Math.max.apply(Math, lastTransactions.map(m => new Date(m.date).getTime()))
+      ))
   }
 
   async function loadTransactions() {
@@ -49,6 +60,8 @@ export function Dashboard() {
       const response = await AsyncStorage.getItem(dataKey);
       const transactions: TransactionCardProps[] = response ? JSON.parse(response) : [];
 
+      if (!transactions.length) return
+
       const transactionsFormatted = transactions
         .map((item) => {
           item.type === 'positive'
@@ -59,36 +72,42 @@ export function Dashboard() {
             id: item.id,
             type: item.type,
             name: item.name,
-            amount: Intl.NumberFormat('pt-BR', {
+            amount: new Intl.NumberFormat('pt-BR', {
               style: 'currency', currency: 'BRL',
             }).format(+item.amount),
             category: item.category,
-            date: Intl.DateTimeFormat('pt-BR').format(new Date(item.date))
+            date: new Intl.DateTimeFormat('pt-BR', {
+              day: '2-digit', month: '2-digit', year: 'numeric'
+            }).format(new Date(item.date))
           }
         });
 
       setData(transactionsFormatted);
 
-      const lastTransactionsEntries = new Date(Math.max.apply(Math, transactions
-        .filter(f => f.type === 'positive')
-        .map(m => new Date(m.date).getTime())));
+      const lastTransactionsEntries = formattedDate(transactions, "positive", { day: '2-digit', month: 'long' })
 
-      const lastTransactionsExpensive = new Date(Math.max.apply(Math, transactions
-        .filter(f => f.type === 'negative')
-        .map(m => new Date(m.date).getTime())));
+      const lastTransactionsExpensive = formattedDate(transactions, "negative", { day: '2-digit', month: 'long' })
 
       setHighlight({
         entries: {
           amount: formattedCurrency(entriesTotal),
-          lastDate: `Última entrada dia ${formattedDate(lastTransactionsEntries, { day: '2-digit', month: 'long' })}`,
+          lastDate: !!lastTransactionsEntries
+            ? `Última entrada dia ${lastTransactionsEntries}`
+            : "",
         },
         expensives: {
           amount: formattedCurrency(expensiveTotal),
-          lastDate: `Última saída dia ${formattedDate(lastTransactionsExpensive, { day: '2-digit', month: 'long' })}`,
+          lastDate: !!lastTransactionsExpensive
+            ? `Última saída dia ${lastTransactionsExpensive}`
+            : "",
         },
         total: {
           amount: formattedCurrency(entriesTotal - expensiveTotal),
-          lastDate: `01 à ${formattedDate(lastTransactionsExpensive, { day: '2-digit', month: 'long' })}`
+          lastDate: !!lastTransactionsExpensive
+            ? `01 à ${lastTransactionsExpensive}`
+            : !!lastTransactionsEntries
+              ? `01 à ${lastTransactionsEntries}`
+              : ""
         }
       });
 
@@ -100,13 +119,9 @@ export function Dashboard() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     loadTransactions()
-  }, []);
-
-  useFocusEffect(
-    useCallback(() => { loadTransactions() }, [])
-  );
+  }, []));
 
   return (
     <Container>

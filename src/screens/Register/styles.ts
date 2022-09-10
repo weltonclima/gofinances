@@ -13,12 +13,9 @@ export const Form = styled.View`
   justify-content: space-between;
 `;
 
-export const Fields = styled.View`
-  
-`;
-
 export const TransactionTypes = styled.View`
   flex-direction: row;
-  justify-content: space-between;
-  margin: 16px 0;
+  justify-content: space-around;
+  margin: 8px 0 16px;
+  width:100%;
 `;

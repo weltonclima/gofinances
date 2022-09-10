@@ -21,14 +21,13 @@ export const Container = styled.View<TransactionType>`
       : isActive && type === 'down'
       && css`background-color: ${({ theme }) => theme.colors.attention_light};`
   };
-
 `;
 
 export const Button = styled(RectButton)`
   flex-direction: row;
+  padding: 16px;
   justify-content: center;
   align-items: center;
-  padding: 16px;
 `;
 
 export const Icon = styled(Feather) <{ type: string }>`
@@ -42,6 +41,5 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.title};
-
   padding-left: 12px;
 `;

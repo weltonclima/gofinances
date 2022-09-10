@@ -2,6 +2,7 @@ import styled, { css } from "styled-components/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const Header = styled.View`
+  width:100%;
   background-color: ${({ theme }) => theme.colors.primary};
   height: ${RFValue(113)}px;
   justify-content: flex-end;
