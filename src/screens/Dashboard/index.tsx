@@ -9,6 +9,8 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { useAuth } from '../../hooks/useAuth';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 type HighlightProps = {
   amount: string;
@@ -20,14 +22,13 @@ type Highlight = {
   total: HighlightProps;
 }
 
-const dataKey = '@gofinances:transactions';
-
 export function Dashboard() {
   const [data, setData] = useState<TransactionCardProps[]>([])
   const [highlight, setHighlight] = useState({} as Highlight)
   const [isLoading, setIsLoading] = useState(true);
 
   const theme = useTheme();
+  const { user, signOut } = useAuth();
 
   function formattedCurrency(number: number) {
     return new Intl.NumberFormat('pt-BR', {
@@ -57,6 +58,7 @@ export function Dashboard() {
     let expensiveTotal = 0;
 
     try {
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
       const response = await AsyncStorage.getItem(dataKey);
       const transactions: TransactionCardProps[] = response ? JSON.parse(response) : [];
 
@@ -137,15 +139,17 @@ export function Dashboard() {
           <Header>
             <UserWrapper>
               <UserInfo>
-                <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/69590175?v=4' }} />
+                <Photo source={{ uri: user.picture }} />
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Welton</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => { }}>
-                <Icon name="power" />
-              </LogoutButton>
+              <GestureHandlerRootView>
+                <LogoutButton onPress={() => signOut()}>
+                  <Icon name="power" />
+                </LogoutButton>
+              </GestureHandlerRootView>
             </UserWrapper>
           </Header>
           <HighlightCards >

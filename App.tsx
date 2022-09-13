@@ -14,6 +14,9 @@ import 'react-native-gesture-handler';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR'
 import { ActivityIndicator, View, StatusBar } from 'react-native';
+import { SignIn } from './src/screens/SignIn';
+import { AuthProvider, useAuth } from './src/hooks/useAuth';
+import { Routes } from './src/routes';
 
 export default function App() {
 
@@ -23,8 +26,9 @@ export default function App() {
     Poppins_700Bold
   });
 
+  const { isLoading } = useAuth();
 
-  return !fontsLoaded ?
+  return !fontsLoaded || isLoading ?
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
       <ActivityIndicator
         color={theme.colors.primary}
@@ -33,13 +37,13 @@ export default function App() {
     </View>
     :
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <StatusBar
-          barStyle="light-content"
-          backgroundColor="transparent"
-          translucent
-        />
-        <AppRoutes />
-      </NavigationContainer>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
 }

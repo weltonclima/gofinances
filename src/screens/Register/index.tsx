@@ -14,6 +14,7 @@ import uuid from 'react-native-uuid';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { TransactionCardProps } from '../../components/TransactionCard';
 import { Header } from '../../components/Header';
+import { useAuth } from '../../hooks/useAuth';
 interface FormData {
   name: string;
   amount: string;
@@ -24,8 +25,6 @@ const schema = yup.object({
   amount: yup.number().typeError('Informe um valor numérico')
     .positive('O valor não pode ser negativo').required('Preço é obrigatório'),
 }).required();
-
-const dataKey = '@gofinances:transactions';
 
 type TransactionType = "positive" | "negative"
 
@@ -40,6 +39,7 @@ export const Register = () => {
   } as CategoryProps);
 
   const navigation = useNavigation();
+  const { user } = useAuth();
 
   const { control, handleSubmit, reset } = useForm<FormData>({
     resolver: yupResolver(schema)
@@ -62,6 +62,7 @@ export const Register = () => {
     }
 
     try {
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 

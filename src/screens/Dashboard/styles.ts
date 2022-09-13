@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
 import { BorderlessButton } from "react-native-gesture-handler"
 import { FlatList } from "react-native";
-import { DataListProps } from ".";
+import { TransactionCardProps } from "../../components/TransactionCard"
 
 export const Container = styled.View<{ color: string }>`
   flex: 1; 
@@ -21,7 +21,7 @@ export const Header = styled.View`
 export const UserWrapper = styled.View`
   width: 100%;
   padding: 0 24px;
-  margin-top: ${getStatusBarHeight()+RFValue(20)}px;
+  margin-top: ${getStatusBarHeight() + RFValue(20)}px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;  
@@ -85,7 +85,7 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
-export const TransactionList = styled(FlatList<DataListProps>
+export const TransactionList = styled(FlatList<TransactionCardProps>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {

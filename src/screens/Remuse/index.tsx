@@ -18,8 +18,7 @@ import {
   MonthSelectIcon
 } from './styles';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-const dataKey = '@gofinances:transactions';
+import { useAuth } from '../../hooks/useAuth';
 
 type Category = {
   key: string;
@@ -36,9 +35,10 @@ export const Remuse = () => {
   const [data, setData] = useState<Category[]>([]);
 
   const theme = useTheme();
-
+  const { user } = useAuth();
   async function loadData() {
     setIsLoading(true);
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted: TransactionCardProps[] = response ? JSON.parse(response) : [];
 
