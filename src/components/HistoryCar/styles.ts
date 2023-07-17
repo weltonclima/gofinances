@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { View } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 export const Container = styled(View) <{ color: string }>`
   width: 100%;

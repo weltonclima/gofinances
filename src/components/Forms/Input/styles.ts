@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { TextInput } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 export const Container = styled(TextInput)`
   width:100%;

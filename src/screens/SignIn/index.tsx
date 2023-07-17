@@ -1,13 +1,13 @@
 import React from 'react';
 import { ActivityIndicator, Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useTheme } from 'styled-components';
+import AppleSvg from '../../assets/apple.svg';
 import LogoSvg from '../../assets/finance.svg';
 import GoogleSvg from '../../assets/google.svg';
-import AppleSvg from '../../assets/apple.svg';
 import { SignInButton } from '../../components/SignInButton';
-import { Container, Content, ContentLogo, Footer, SignTitle, Title } from './styles';
 import { useAuth } from '../../hooks/useAuth';
-import { useTheme } from 'styled-components';
+import { Container, Content, ContentLogo, Footer, SignTitle, Title } from './styles';
 
 export const SignIn = () => {
   const { signInWithGoogle, signInWithApple, isLoading } = useAuth();

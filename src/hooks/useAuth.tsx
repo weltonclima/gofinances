@@ -1,9 +1,8 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import * as AuthSession from 'expo-auth-session';
-import * as AppleAuthentication from 'expo-apple-authentication';
-import { ActivityIndicator, Alert, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import theme from "../global/styles/theme";
+import * as AppleAuthentication from 'expo-apple-authentication';
+import * as AuthSession from 'expo-auth-session';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
 
 interface IAuthContextData {
   signInWithGoogle: () => Promise<void>;

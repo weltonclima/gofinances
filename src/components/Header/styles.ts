@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 export const Header = styled.View`
   width:100%;

@@ -1,10 +1,10 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Platform, View } from 'react-native';
+import { Platform } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Dashboard } from '../screens/Dashboard';
 import { Register } from '../screens/Register';
-import { MaterialIcons } from '@expo/vector-icons';
 import { Remuse } from '../screens/Remuse';
 
 const { Navigator, Screen } = createBottomTabNavigator();

@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useEffect, useState } from 'react';
+import { addMonths, format, subMonths } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
@@ -10,15 +12,13 @@ import { Header } from '../../components/Header';
 import { HistoryCar } from '../../components/HistoryCar';
 import { TransactionCardProps } from '../../components/TransactionCard';
 import { categories } from '../../utils/categories';
-import { addMonths, format, subMonths } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useAuth } from '../../hooks/useAuth';
 import {
   ChartContainer, Container, Content, Month, MonthSelect, MonthSelectButton,
   MonthSelectIcon
 } from './styles';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useAuth } from '../../hooks/useAuth';
 
 type Category = {
   key: string;

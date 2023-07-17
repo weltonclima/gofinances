@@ -1,12 +1,12 @@
-import styled from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Feather } from '@expo/vector-icons';
-import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
-import { BorderlessButton } from "react-native-gesture-handler"
 import { FlatList } from "react-native";
-import { TransactionCardProps } from "../../components/TransactionCard"
+import { BorderlessButton } from "react-native-gesture-handler";
+import { getBottomSpace, getStatusBarHeight } from "react-native-iphone-x-helper";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
+import { TransactionCardProps } from "../../components/TransactionCard";
 
-export const Container = styled.View<{ color: string }>`
+export const Container = styled.View`
   flex: 1; 
   background-color: ${({ theme }) => theme.colors.background};
 `;

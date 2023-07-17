@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Feather } from '@expo/vector-icons';
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
-import { CategoryProps } from ".";
+import { FlatList, Text, View } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
+import { CategoryProps } from ".";
 
 //(GestureHandlerRootView)`
 export const Container = styled(View)`

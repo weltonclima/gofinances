@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components/native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 export const Container = styled(RectButton)`
   width: 100%;

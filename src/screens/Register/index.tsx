@@ -1,20 +1,19 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { Alert, Keyboard, Modal, TouchableWithoutFeedback, View } from 'react-native';
+import uuid from 'react-native-uuid';
+import * as yup from "yup";
 import { Button } from '../../components/Forms/Button';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 import { InputForm } from '../../components/Forms/InputForm';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
-import { CategoryProps, CategorySelect } from '../CategorySelect';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import { Container, Form, TransactionTypes } from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import uuid from 'react-native-uuid';
-import { CommonActions, useNavigation } from '@react-navigation/native';
-import { TransactionCardProps } from '../../components/TransactionCard';
 import { Header } from '../../components/Header';
 import { useAuth } from '../../hooks/useAuth';
+import { CategoryProps, CategorySelect } from '../CategorySelect';
+import { Container, Form, TransactionTypes } from './styles';
 interface FormData {
   name: string;
   amount: string;

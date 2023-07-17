@@ -1,7 +1,7 @@
 import React from 'react';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Button } from '../../components/Forms/Button';
 import { categories } from '../../utils/categories';
-import { GestureHandlerRootView } from "react-native-gesture-handler"
 
 import {
   Category, CategoryList, Container, Footer, Header, Icon, Name,

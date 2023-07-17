@@ -1,16 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, View, ActivityIndicator } from 'react-native';
-import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCardProps, TransactionCard } from '../../components/TransactionCard';
-import {
-  Container, Header, Photo, User, UserGreeting, UserInfo, UserName, Icon, UserWrapper,
-  HighlightCards, Transactions, Title, TransactionList, LogoutButton
-} from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
-import { useTheme } from 'styled-components';
-import { useAuth } from '../../hooks/useAuth';
+import React, { useCallback, useState } from 'react';
+import { ActivityIndicator, Alert, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components';
+import { HighlightCard } from '../../components/HighlightCard';
+import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
+import { useAuth } from '../../hooks/useAuth';
+import {
+  Container, Header,
+  HighlightCards,
+  Icon,
+  LogoutButton,
+  Photo,
+  Title, TransactionList,
+  Transactions,
+  User, UserGreeting, UserInfo, UserName,
+  UserWrapper
+} from './styles';
 
 type HighlightProps = {
   amount: string;

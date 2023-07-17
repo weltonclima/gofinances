@@ -1,6 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps, View } from 'react-native';
-import { GestureHandlerRootView, RectButtonProps } from "react-native-gesture-handler"
+import { GestureHandlerRootView, RectButtonProps } from "react-native-gesture-handler";
 
 import { Container, Title } from './styles';
 
